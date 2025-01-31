@@ -3,7 +3,7 @@ const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
 
 addTaskBtn.addEventListener('click', () => {
-    if (taskInput.ariaValueMax.trim() !== "" ){
+    if (taskInput.value.trim() !== "" ){
         const li = document.createElement('li');
         li.classList.add('list-group-item');
         li.innerHTML = `
