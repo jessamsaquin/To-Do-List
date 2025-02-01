@@ -11,8 +11,9 @@ addTaskBtn.addEventListener('click', () => {
         li.innerHTML = `
         <span>${taskInput.value}</span>
         <div>
-            <button class="btn btn-success btn-sm float-right ml-2 complete-btn">Complete</button>
-            <button class="btn btn-danger btn-sm float-right delete-btn">Delete</button>
+            <button class="btn btn-success btn-sm float-right ml-2 complete-btn"> <i class="bi bi-check2"></i> Done</button>
+                    <button class="btn btn-danger btn-sm float-right  delete-btn"><i class="bi bi-trash3"></i> Del</button>
+                    <button class="btn btn-warning btn-sm float-right ml-2 edit-btn"><i class="bi bi-pencil"></i> Edit</button>
         </div>
         `;
     taskList.appendChild(li);
@@ -26,6 +27,8 @@ addTaskBtn.addEventListener('click', () => {
         if (e.target.classList.contains('complete-btn')) {
             const taskText = e.target.closest('li').querySelector('span');
             taskText.style.textDecoration = 'line-through';
+            
+
             saveTasks();
         }
         if (e.target.classList.contains('delete-btn')) {
@@ -56,11 +59,12 @@ addTaskBtn.addEventListener('click', () => {
             li.innerHTML = `
                 <span style="text-decoration: ${task.completed ? 'line-through' : 'none'}">${task.text}</span>
                 <div>
-                    <button class="btn btn-success btn-sm float-right ml-2 complete-btn">Complete</button>
-                    <button class="btn btn-danger btn-sm float-right  delete-btn">Delete</button>
+                    <button class="btn btn-success btn-sm float-right ml-2 complete-btn"> <i class="bi bi-check2"></i> Done</button>
+                    <button class="btn btn-danger btn-sm float-right  delete-btn"><i class="bi bi-trash3"></i> Del</button>
+                    <button class="btn btn-warning btn-sm float-right ml-2 edit-btn"><i class="bi bi-pencil"></i> Edit</button>
                 </div>
                 `;
             taskList.appendChild(li);
         });
     }
-    
+   
