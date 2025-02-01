@@ -35,7 +35,15 @@ addTaskBtn.addEventListener('click', () => {
             e.target.closest('li').remove();
             saveTasks();
         }
-    });
+         if (e.target.classList.contains('edit-btn')) {
+        const taskText = e.target.closest('li').querySelector('span');
+        const newTask = prompt("Edit your task:", taskText.textContent);
+        if (newTask !== null && newTask.trim() !== "") {
+            taskText.textContent = newTask;
+            saveTasks();
+        }
+    }
+});
 
     function saveTasks() {
         const tasks = [];
