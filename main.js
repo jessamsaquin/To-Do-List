@@ -28,7 +28,10 @@ addTaskBtn.addEventListener('click', () => {
             const taskText = e.target.closest('li').querySelector('span');
             taskText.style.textDecoration = 'line-through';
             
+            e.target.classList.remove('btn-success');
+            e.target.classList.add('btn-secondary');
 
+            e.target.disabled = true;
             saveTasks();
         }
         if (e.target.classList.contains('delete-btn')) {
@@ -36,7 +39,8 @@ addTaskBtn.addEventListener('click', () => {
             saveTasks();
         }
          if (e.target.classList.contains('edit-btn')) {
-        const taskText = e.target.closest('li').querySelector('span');
+        const li = e.target.closest('li');
+        const taskText = li.querySelector('span');
         const newTask = prompt("Edit your task:", taskText.textContent);
         if (newTask !== null && newTask.trim() !== "") {
             taskText.textContent = newTask;
@@ -53,14 +57,16 @@ addTaskBtn.addEventListener('click', () => {
             const completed = item.querySelector('span').style.textDecoration === 'line-through';
             tasks.push({
                 text: taskText,
-                completed
+                completed: completed
             });
-        });
+        });console.log("saving task..." , tasks);
         localStorage.setItem('tasks', JSON.stringify(tasks));
+        
     }
 
     function loadTasks() {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        taskList.innerHTML = "";
         tasks.forEach(task => {
             const li = document.createElement('li');
             li.classList.add('list-group-item' ,'d-flex', 'justify-content-between', 'align-items-center');
